@@ -1,0 +1,149 @@
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(deflayer base
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  @qq  @qw  @qe  @qr  @qt  @qy  @qu  @qi  @qo  @qp  [   ]   \
+  caps @qa  @qs  @qd  @qf  @qg  @qh  @qj  @qk  @ql  @q;  @q'  ret
+  @oss @qz  @qx  @qc  @qv  @qb  @qn  @qm  @q,  @q.  @q/  @oss
+  @ctl @met @alt           spc            ralt comp rctl
+)
+
+(deflayer colemak
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    @cmw @cmf @cmp g    j    l    u    y    ;    [    ]    \
+  bspc a    @cmr @cms @cmt d    h    n    e    i    o    '    ret
+  @oss z    @cmx @cmc @cmv b    k    m    ,    .    /    @oss
+  @ctl @met @alt           spc             ralt rmet rctl
+)
+
+(deflayer workman
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  @qq  d    @wmr @wmw b    j    f    u    p    ;    [    ]    \
+  bspc @qa  s    @wmh @wmt g    y    n    e    o    i    '    ret
+  @oss @qz  x    @wmm @wmc v    k    l    ,    .    /    @oss
+  @ctl @met @alt           spc             ralt rmet rctl
+)
+
+(deflayer semimak-jq
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  @smf @sml h    @smv z    '    w    u    o    y    [    ]    \
+  bspc @sms @smr n    @smt k    c    d    e    a    i    ;    ret
+  @oss @smx @smj b    @smm q    p    g    ,    .    /    @oss
+  @ctl @met @alt           spc             ralt rmet rctl
+)
+
+(deflayer sturdy
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  @stv @stm @stl c    p    x    f    o    u    j    [    ]    \
+  bspc @sts @stt @str d    y    .    n    a    e    i    /    ret
+  @oss @stz @stv @stq g    w    b    h    '    ;    ,    @oss
+  @ctl @met @alt           spc             ralt rmet rctl
+)
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  @oss z    x    c    v    b    n    m    ,    .    /    @oss
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(defvar
+ tap-timeout       200
+ hold-timeout      200
+ one-shot-timeout  500
+ caps-word-timeout 2000
+ tt $tap-timeout
+ ht $hold-timeout
+ ot $one-shot-timeout
+ ct $caps-word-timeout
+)
+
+(defalias
+  grl (tap-hold $tt $ht grv (one-shot-press 1000 (layer-toggle layouts)))
+  qwr (layer-switch qwerty)
+  bse (layer-switch base)
+
+  LScm (layer-toggle colemak)
+  LSwm (layer-toggle workman)
+  LSsm (layer-toggle semimak-jq)
+  LSsd (layer-toggle sturdy)
+
+  LTq (layer-toggle qwerty)
+
+  ctl (multi lctl @LTq)
+  met (multi lmet @LTq)
+  alt (multi lalt @LTq)
+  cw  (caps-word $ct)
+  oss (one-shot $ot lsft)
+  td  (tap-hold $tt $ht (tap-dance $tt (@oss @cw)) (multi lsft @oss)) ;;UNUSED: Tap = OSS, Double Tap = CW, Hold = SFT
+
+  ;;Colemak Swap
+  qq  (multi q @LScm)
+  qa  (multi a @LScm)
+  qz  (multi z @LScm)
+;;wmq (multi q @LScm)
+;;wma (multi a @LScm)
+;;wmz (multi z @LScm)
+  smf (multi f @LScm)
+  sms (multi s @LScm)
+  smx (multi x @LScm)
+  stv (multi v @LScm)
+  sts (multi s @LScm)
+  stz (multi z @LScm)
+
+  ;;Workman Swap
+  qw  (multi q @LSwm)
+  qs  (multi a @LSwm)
+  qx  (multi z @LSwm)
+  cmw (multi w @LSwm)
+  cmr (multi r @LSwm)
+  cmx (multi x @LSwm)
+  sml (multi l @LSwm)
+  smr (multi r @LSwm)
+  smj (multi j @LSwm)
+  stm (multi m @LSwm)
+  stt (multi t @LSwm)
+  stk (multi k @LSwm)
+
+  ;;Semimak-JQ Swap
+  qe  (multi e @LSsm)
+  qd  (multi d @LSsm)
+  qc  (multi c @LSsm)
+  cmf (multi f @LSsm)
+  cms (multi s @LSsm)
+  cmc (multi c @LSsm)
+  wmr (multi r @LSsm)
+  wmh (multi h @LSsm)
+  wmm (multi m @LSsm)
+  stl (multi l @LSsm)
+  str (multi r @LSsm)
+  stq (multi q @LSsm)
+
+  ;;Sturdy Swap
+  qr  (multi r @LSsd)
+  qf  (multi f @LSsd)
+  qv  (multi v @LSsd)
+  cmp (multi p @LSsd)
+  cmt (multi t @LSsd)
+  cmv (multi v @LSsd)
+  wmw (multi w @LSsd)
+  wmt (multi t @LSsd)
+  wmc (multi c @LSsd)
+  smv (multi v @LSsd)
+  smt (multi t @LSsd)
+  smm (multi m @LSsd)
+)
+(deflayer layouts
+  lrld  @qwr @bse lrld lrld lrld lrld lrld lrld lrld lrld lrld lrld lrld
+  lrld  _    _    _    _    _    _    _    _    _    _    _    _    _
+  lrld  _    _    _    _    _    _    _    _    _    _    _    _
+  lrld  _    _    _    _    _    _    _    _    _    _    _ 
+  lrld  lrld lrld           lrld           lrld lrld lrld
+)
