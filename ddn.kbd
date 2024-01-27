@@ -1,0 +1,105 @@
+;;target\debug\kanata -c ddn.kbd
+
+(defsrc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(deflayer semimak
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  f    l    h    v    z    '    w    u    o    y    [    ]    \
+  @cap s    r    n    t    k    c    d    e    a    i    ;    @ret
+  @td  x    j    b    m    q    p    g    ,    .    /    @td 
+  @ctl @met @alt           spc            ralt rmet rctl
+)
+
+(deflayer symbol
+  @tog f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  bspc
+  tab  1    2    3    4    5    6    7    8    9    0    @%   @^   @#
+  caps S-'  @<   @>   .    /    @&   @:   @po  @pc  @?   @~   ret
+  lsft -    @!   =    @+   @*   @|   @$   @{   @}   @@   rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @ret
+  @oss z    x    c    v    b    n    m    ,    .    @\   @oss
+  lctl lmet lalt           spc            @ralt @rmet @rctl
+)
+
+(defvar
+ tap-timeout       200
+ hold-timeout      200
+ one-shot-timeout  500
+ caps-word-timeout 2000
+ tt $tap-timeout
+ ht $hold-timeout
+ ot $one-shot-timeout
+ ct $caps-word-timeout
+)
+
+(defalias
+  grl (tap-hold $tt $ht grv esc)
+  tog (tap-hold $tt $ht esc (one-shot-press 1000 (layer-toggle layouts)))
+
+  smk (layer-switch semimak)
+  qwr (layer-switch qwerty)
+  sym (layer-switch symbol)
+
+  LTq (layer-toggle qwerty)
+  LTs (layer-toggle symbol)
+
+  \ (fork / up (lctl lmet))
+  rctl (fork rctl rght (lctl lmet))
+  rmet (fork rmet down (lctl lmet))
+  ralt (fork ralt left (lctl lmet))
+
+  ctl (multi lctl @LTq)
+  met (multi lmet @LTq)
+  alt (multi lalt @LTq)
+
+  cw  (caps-word $ct)
+  oss (one-shot $ot lsft)
+  td  (tap-hold $tt $ht (tap-dance $tt (@oss @cw)) (multi lsft @oss))
+
+  cap (tap-hold $tt $ht bspc (multi A-lmet @LTs))
+  ret (tap-hold $tt $ht ret  (multi A-lmet @LTs))
+)
+
+;; Shifted keys
+(defalias
+    { S-[
+    } S-]
+    ~ S-`
+    : S-;
+    | S-\
+    + S-=
+    _ S--
+    < S-,
+    > S-.
+    ? S-/
+    '' S-'
+    ! S-1
+    @ S-2
+    # S-3
+    $ S-4
+    % S-5
+    ^ S-6
+    & S-7
+    * S-8
+    po S-9
+    pc S-0
+)
+
+(deflayer layouts
+  lrld  @qwr @smk _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _ 
+  _     _    _              _              _    _    _
+)

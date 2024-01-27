@@ -1,0 +1,185 @@
+;;target\debug\kanata -c asetniop.kbd
+
+(defsrc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer asetniop
+  @grl XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  caps @a   @s   @e   @t   XX   XX   @n   @i   @o   @p   XX   XX
+  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   rsft
+  lctl lmet lalt           spc             ralt rmet rctl
+)
+
+(deflayer numrow
+  @grl XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  caps @1   @2   @3   @4   XX   XX   @7   @8   @9   @0   XX   XX
+  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   rsft
+  lctl lmet lalt           spc             ralt rmet rctl
+)
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(defvar
+ tap-timeout   200
+ hold-timeout  200
+ chord-timeout 500
+ tt $tap-timeout
+ ht $hold-timeout
+ ct $chord-timeout
+)
+
+(defalias
+  grl (tap-hold $tt $ht grv (layer-toggle layouts))
+
+  ast (layer-switch asetniop)
+  num (layer-switch numrow)
+  qwr (layer-switch qwerty)
+  
+  a (chord asetniop a)
+  s (chord asetniop s)
+  e (chord asetniop e)
+  t (chord asetniop t)
+
+  n (chord asetniop n)
+  i (chord asetniop i)
+  o (chord asetniop o)
+  p (chord asetniop p)  
+
+  1 (chord numrow 1)
+  2 (chord numrow 2)
+  3 (chord numrow 3)
+  4 (chord numrow 4)
+
+  7 (chord numrow 7)
+  8 (chord numrow 8)
+  9 (chord numrow 9)
+  0 (chord numrow 0)  
+)
+
+(deflayer layouts
+  _     @qwr _    _    _    _    _    _    _    _    _    _    _    _
+  _     @ast _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _ 
+  lrld  _    _              _              _    _    _
+)
+
+(defchords asetniop $ct
+  (a              ) a
+  (a s            ) w
+  (a   e          ) x
+  (a     t        ) f
+  (a       n      ) q
+  (a         i    ) z
+  (a           o  ) S-9
+  (a             p) S-/
+  (  s            ) s
+  (  s e          ) d
+  (  s   t        ) c
+  (  s     n      ) j
+  (  s       i    ) k
+  (  s         o  ) .
+  (  s           p) S-0
+  (    e          ) e
+  (    e t        ) r
+  (    e   n      ) y
+  (    e     i    ) ,
+  (    e       o  ) -
+  (    e         p) '
+  (      t        ) t
+  (      t n      ) b
+  (      t   i    ) v
+  (      t     o  ) g
+  (      t       p) bspc
+  (        n      ) n
+  (        n i    ) h
+  (        n   o  ) u
+  (        n     p) m
+  (          i    ) i
+  (          i o  ) l
+  (          i   p) S-1
+  (            o  ) o
+  (            o p) ;
+  (              p) p
+  (a     t n     p) (layer-switch numrow)
+  ;;BRIEFS
+;;(a s e          ) (macro w e)
+;;(a s   t        ) (macro f a c t)
+;;(a   e t        ) (macro a r e)
+;;(  s e t        ) (macro s e t)
+;;(a s e t        ) (macro w e r e)
+;;(a s     n      ) (macro s a n)
+;;(a   e   n      ) (macro a n y)
+;;(  s e   n      ) (macro e y e s) ;; (macro n e e d)
+;;(a     t n      ) (macro f a n)
+;;(a s   t n      ) (macro c a n)
+;;(    e t n      ) (macro b e)
+;;(a   e t n      ) (macro r a n) ;; (macro n e x t)
+;;(  s e t n      ) (macro b e s t)
+;;(a s e t n      ) (macro w e n t) ;; (macro y e a r)
+;;(a s       i    ) (macro a s k)
+;;(  s e     i    ) (macro d i d)
+;;(a s e     i    ) (macro s a i d)
+;;(a         i    ) ;; (macro i f)
+;;(  s       i    ) ;; (macro i t s)
+;;(a s   t   i    ) (macro w a i t)
+;;(    e t   i    ) (macro e v e r)
+;;(a   e t   i    ) (macro f i v e)
+;;(  s e t   i    ) (macro t r i e d)
+;;(a s e t   i    ) (macro f i r s t)
+)
+
+(defchords numrow $ct
+  (1              ) 1
+  (1 2            ) (fork (unicode ⋅) (unicode ∘) (sft))
+  (1   3          ) (fork (unicode ×) (unicode ÷) (sft))
+  (1     4        ) f
+  (1       7      ) q
+  (1         8    ) z
+  (1           9  ) S-9
+  (1             0) S-/
+  (  2            ) 2
+  (  2 3          ) d
+  (  2   4        ) c
+  (  2     7      ) j
+  (  2       8    ) k
+  (  2         9  ) .
+  (  2           0) S-0
+  (    3          ) 3
+  (    3 4        ) r
+  (    3   7      ) y
+  (    3     8    ) ,
+  (    3       9  ) -
+  (    3         0) '
+  (      4        ) 4
+  (      4 7      ) b
+  (      4   8    ) v
+  (      4     9  ) g
+  (      4       0) bspc
+  (        7      ) 7
+  (        7 8    ) h
+  (        7   9  ) u
+  (        7     0) m
+  (          8    ) 8
+  (          8 9  ) l
+  (          8   0) S-1
+  (            9  ) 9
+  (            9 0) ;
+  (              0) 0
+  (1     4 7     0) (layer-switch asetniop)
+  (1 2 3 4        ) tab
+  (        7 8 9 0) ret
+)

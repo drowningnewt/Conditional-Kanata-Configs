@@ -1,0 +1,185 @@
+;;target\debug\kanata --cfg artsey.kbd
+
+(defcfg
+  sequence-input-mode visible-backspaced
+)
+
+(defsrc
+  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
+  caps  a     s     d     f     g     h     j     k     l     ;     '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              spc               ralt  rmet  rctl
+)
+
+(deflayer artsey
+  @tog  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    @pu   @ru   @mu   @iu   XX    XX    @iu   @mu   @ru   @pu   XX    XX    XX
+  XX    @pl   @rl   @ml   @il   XX    XX    @il   @ml   @rl   @pl   XX    XX
+  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    XX    XX                XX                XX    XX    XX
+)
+
+(deflayer shiftlock
+  @tog  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    @spu  @sru  @smu  @siu  XX    XX    @siu  @smu  @sru  @spu  XX    XX    XX
+  XX    @spl  @srl  @sml  @sil  XX    XX    @sil  @sml  @srl  @spl  XX    XX
+  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    XX    XX                XX                XX    XX    XX
+)
+
+(defalias
+  tog (layer-toggle layouts)
+  art (layer-switch artsey)
+  sl (layer-switch shiftlock)
+
+  pl (chord l0 pl)
+  rl (chord l0 rl)
+  ml (chord l0 ml)
+  il (chord l0 il)
+
+  pu (chord l0 pu)
+  ru (chord l0 ru)
+  mu (chord l0 mu)
+  iu (chord l0 iu)
+  
+  spl (chord shift spl)
+  srl (chord shift srl)
+  sml (chord shift sml)
+  sil (chord shift sil)
+
+  spu (chord shift spu)
+  sru (chord shift sru)
+  smu (chord shift smu)
+  siu (chord shift siu)
+
+  fn sldr
+)
+
+(defchords l0 100
+  (il                     ) e
+  (   ml                  ) y
+  (      rl               ) i
+  (         pl            ) o
+  (            iu         ) a
+  (               mu      ) r
+  (                  ru   ) t
+  (                     pu) s
+  (il ml                  ) c
+  (   ml rl               ) u
+  (      rl pl            ) n
+  (         pl iu         ) /
+  (            iu mu      ) f
+  (               mu ru   ) g
+  (                  ru pu) j
+  (il       pl            ) b
+  (il    rl               ) h
+  (   ml    pl            ) k
+  (            iu       pu) w
+  (               mu    pu) v
+  (   ml                pu) (one-shot 1000 lmet)
+  (      rl    iu         ) ,
+  (      rl       mu      ) del
+  (il                   pu) (one-shot 1000 lctl)
+  (      rl             pu) (one-shot 1000 lalt)
+  (   ml       iu         ) .
+  (il             mu      ) bspc
+  (il          iu         ) ret
+  (      rl          ru   ) S-1
+  (il ml rl               ) l
+  (   ml rl pl            ) m
+  (            iu mu ru   ) d
+  (               mu ru pu) x
+  (            iu    ru pu) q
+  (il    rl pl            ) p
+  (il ml rl pl            ) spc
+  (            iu mu ru pu) z
+  (   ml rl    iu         ) '
+  (         pl iu mu      ) esc
+  (         pl iu mu ru   ) tab
+  (il             mu ru pu) (one-shot 1000 lsft)
+  (   ml rl pl iu         ) caps
+  (   ml          mu      ) @sl
+)
+
+(defchords shift 100
+  (sil                            ) (multi e lsft)
+  (    sml                        ) (multi y lsft)
+  (        srl                    ) (multi i lsft)
+  (            spl                ) (multi o lsft)
+  (                siu            ) (multi a lsft)
+  (                    smu        ) (multi r lsft)
+  (                        sru    ) (multi t lsft)
+  (                            spu) (multi s lsft)
+  (sil sml                        ) (multi c lsft)
+  (    sml srl                    ) (multi u lsft)
+  (        srl spl                ) (multi n lsft)
+  (            spl siu            ) (multi / lsft)
+  (                siu smu        ) (multi f lsft)
+  (                    smu sru    ) (multi g lsft)
+  (                        sru spu) (multi j lsft)
+  (sil         spl                ) (multi b lsft)
+  (sil     srl                    ) (multi h lsft)
+   (   sml     spl                ) (multi k lsft)
+  (                siu         spu) (multi w lsft)
+  (                    smu     spu) (multi v lsft)
+  (    sml                     spu) (one-shot 1000 lmet)
+  (        srl     siu            ) (multi , lsft)
+  (        srl         smu        ) (multi del lsft)
+  (sil                         spu) (one-shot 1000 lctl)
+  (        srl                 spu) (one-shot 1000 lalt)
+  (    sml         siu            ) (multi . lsft)
+  (sil                 smu        ) (multi bspc lsft)
+  (sil             siu            ) (multi ret lsft)
+  (        srl             sru    ) S-1
+  (sil sml srl                    ) (multi l lsft)
+  (    sml srl spl                ) (multi m lsft)
+  (                siu smu sru    ) (multi d lsft)
+  (                    smu sru spu) (multi x lsft)
+  (                siu     sru spu) (multi q lsft)
+  (sil     srl spl                ) (multi p lsft)
+  (sil sml srl spl                ) (multi spc lsft)
+  (                siu smu sru spu) (multi z lsft)
+  (    sml srl     siu            ) (multi ' lsft)
+  (            spl siu smu        ) (multi esc lsft)
+  (            spl siu smu sru    ) (multi tab lsft)
+  (sil                 smu sru spu) (one-shot 1000 lsft)
+  (    sml srl spl siu            ) (multi caps lsft)
+  (    sml             smu        ) @art
+)
+
+(deffakekeys f-one f1)
+(deffakekeys f-two f2)
+(deffakekeys f-three f3)
+(deffakekeys f-four f4)
+(deffakekeys f-five f5)
+(deffakekeys f-six f6)
+(deffakekeys f-seven f7)
+(deffakekeys f-eight f8)
+(deffakekeys f-nine f9)
+(deffakekeys f-ten f10)
+(deffakekeys f-eleven f11)
+(deffakekeys f-twelve f12)
+
+(defseq
+f-one (1)
+f-two (2)
+f-three (3)
+f-four (4)
+f-five (5)
+f-six (6)
+f-seven (7)
+f-eight (8)
+f-nine (9)
+f-ten (o 0)
+f-eleven (o 1)
+f-twelve (o 2)
+)
+
+(deflayer layouts
+  _     @sl   @art  _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _ 
+  lrld  _     _                 _                 _     _     _
+)
