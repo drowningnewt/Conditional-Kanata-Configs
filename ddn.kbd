@@ -8,11 +8,19 @@
   lctl lmet lalt           spc            ralt comp rctl
 )
 
-(deflayer semimak
+(deflayer sntm
   @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  f    l    h    v    z    '    w    u    o    y    [    ]    \
-  @cap s    r    n    t    k    c    d    e    a    i    ;    @ret
-  @td  x    j    b    m    q    p    g    ,    .    /    @td 
+  tab  f    p    d    g    v    q    l    o    u    ,    [    ]    \
+  @cap s    n    t    m    y    z    r    a    e    i    /    @ret
+  @td  x    b    k    c    w    j    h    '    ;    .    @td 
+  @ctl @met @alt           spc            ralt rmet rctl
+)
+
+(deflayer seht-drai
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  f    u    l    v    b    q    g    n    o    j    [    ]    \
+  @cap s    e    h    t    k    '    d    r    a    i    .    @ret
+  @td  ;    m    p    w    z    y    c    x    /    ,    @td 
   @ctl @met @alt           spc            ralt rmet rctl
 )
 
@@ -21,7 +29,7 @@
   tab  1    2    3    4    5    6    7    8    9    0    @%   @^   @#
   caps S-'  @<   @>   .    /    @&   @:   @po  @pc  @?   @~   ret
   lsft -    @!   =    @+   @*   @|   @$   @{   @}   @@   rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  lctl lmet lalt           spc            ralt rmet caps
 )
 
 (deflayer qwerty
@@ -47,7 +55,8 @@
   grl (tap-hold $tt $ht grv esc)
   tog (tap-hold $tt $ht esc (one-shot-press 1000 (layer-toggle layouts)))
 
-  smk (layer-switch semimak)
+  sdr (layer-switch seht-drai)
+  stm (layer-switch sntm)
   qwr (layer-switch qwerty)
   sym (layer-switch symbol)
 
@@ -69,6 +78,7 @@
 
   cap (tap-hold $tt $ht bspc (multi A-lmet @LTs))
   ret (tap-hold $tt $ht ret  (multi A-lmet @LTs))
+  sm (setmouse 3000 3000)
 )
 
 ;; Shifted keys
@@ -97,8 +107,8 @@
 )
 
 (deflayer layouts
-  lrld  @qwr @smk _    _    _    _    _    _    _    _    _    _    _
-  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  lrld  @qwr @sdr _    _    _    _    _    _    _    _    _    _    _
+  _     _    @stm _    _    _    _    _    _    _    _    _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _ 
   _     _    _              _              _    _    _

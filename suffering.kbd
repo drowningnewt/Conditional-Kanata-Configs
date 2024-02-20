@@ -1,0 +1,1288 @@
+;;DDN's layout for unoptimized suffering
+;;For anyone who wants to unangle any anglemodded layouts:
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;angle
+;;matrix
+;;matrix
+;;matrix
+;;angle
+;;matrix
+;;angle
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;matrix
+;;angle
+;;matrix
+;;matrix
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(deflayer base
+  @grl 1    2    3    4    5    6    7    8    9    0    @-   @=   bspc
+  tab  @q   @w   @e   @r   @t   @y   @u   @i   @o   @p   @[   @]   \
+  caps @a   @s   @d   @f   @g   @h   @j   @k   @l   @;   @'   ret
+  @oss @z   @x   @c   @v   @b   @n   @m   @,   @.   @/   @oss
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  @oss z    x    c    v    b    n    m    ,    .    /    @oss
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(defvar
+ tap-timeout       200
+ hold-timeout      200
+ one-shot-timeout  500
+ caps-word-timeout 2000
+ tt $tap-timeout
+ ht $hold-timeout
+ ot $one-shot-timeout
+ ct $caps-word-timeout
+)
+
+(defalias
+  grl (tap-hold $tt $ht grv (one-shot-press 1000 (layer-toggle layouts)))
+  qwr (layer-switch qwerty)
+  bse (layer-switch base)
+
+  LTq (layer-toggle qwerty)
+
+  ctl (multi lctl @LTq)
+  met (multi lmet @LTq)
+  alt (multi lalt @LTq)
+  cw  (caps-word $ct)
+  oss (one-shot $ot lsft)
+  td  (tap-hold $tt $ht (tap-dance $tt (@oss @cw)) (multi lsft @oss)) ;;UNUSED: Tap = OSS, Double Tap = CW, Hold = SFT
+
+  q (switch
+    ((key-history = 1)) y break
+    ((key-history - 1)) j break
+    ((key-history ] 1)) q break
+    ((key-history [ 1)) q break
+    ((key-history ; 1)) q break
+    ((key-history ' 1)) y break
+    ((key-history / 1)) q break
+    ((key-history . 1)) y break
+    ((key-history , 1)) q break
+    ((key-history z 1)) w break
+    ((key-history y 1)) y break
+    ((key-history x 1)) f break
+    ((key-history w 1)) q break
+    ((key-history v 1)) v break
+    ((key-history u 1)) x break
+    ((key-history t 1)) j break
+    ((key-history s 1)) f break
+    ((key-history r 1)) f break
+    ((key-history q 1)) q break
+    ((key-history p 1)) q break
+    ((key-history o 1)) y break
+    ((key-history n 1)) x break
+    ((key-history m 1)) y break
+    ((key-history l 1)) q break
+    ((key-history k 1)) j break
+    ((key-history j 1)) v break
+    ((key-history i 1)) y break
+    ((key-history h 1)) f break
+    ((key-history g 1)) b break
+    ((key-history f 1)) x break
+    ((key-history e 1)) q break
+    ((key-history d 1)) ' break
+    ((key-history c 1)) w break
+    ((key-history b 1)) , break
+    ((key-history a 1)) w break
+    () q break)
+
+  w (switch
+    ((key-history = 1)) o break
+    ((key-history - 1)) g break
+    ((key-history ] 1)) l break
+    ((key-history [ 1)) w break
+    ((key-history ; 1)) l break
+    ((key-history ' 1)) , break
+    ((key-history / 1)) w break
+    ((key-history . 1)) o break
+    ((key-history , 1)) g break
+    ((key-history z 1)) l break
+    ((key-history y 1)) l break
+    ((key-history x 1)) u break
+    ((key-history w 1)) d break
+    ((key-history v 1)) l break
+    ((key-history u 1)) d break
+    ((key-history t 1)) g break
+    ((key-history s 1)) l break
+    ((key-history r 1)) r break
+    ((key-history q 1)) w break
+    ((key-history p 1)) p break
+    ((key-history o 1)) o break
+    ((key-history n 1)) l break
+    ((key-history m 1)) p break
+    ((key-history l 1)) w break
+    ((key-history k 1)) o break
+    ((key-history j 1)) m break
+    ((key-history i 1)) c break
+    ((key-history h 1)) l break
+    ((key-history g 1)) l break
+    ((key-history f 1)) l break
+    ((key-history e 1)) c break
+    ((key-history d 1)) , break
+    ((key-history c 1)) l break
+    ((key-history b 1)) . break
+    ((key-history a 1)) g break
+    () w break)
+
+  e (switch
+    ((key-history = 1)) u break
+    ((key-history - 1)) d break
+    ((key-history ] 1)) d break
+    ((key-history [ 1)) u break
+    ((key-history ; 1)) r break
+    ((key-history ' 1)) h break
+    ((key-history / 1)) l break
+    ((key-history . 1)) u break
+    ((key-history , 1)) m break
+    ((key-history z 1)) r break
+    ((key-history y 1)) r break
+    ((key-history x 1)) l break
+    ((key-history w 1)) r break
+    ((key-history v 1)) n break
+    ((key-history u 1)) h break
+    ((key-history t 1)) h break
+    ((key-history s 1)) h break
+    ((key-history r 1)) d break
+    ((key-history q 1)) e break
+    ((key-history p 1)) l break
+    ((key-history o 1)) u break
+    ((key-history n 1)) d break
+    ((key-history m 1)) o break
+    ((key-history l 1)) f break
+    ((key-history k 1)) u break
+    ((key-history j 1)) l break
+    ((key-history i 1)) l break
+    ((key-history h 1)) h break
+    ((key-history g 1)) d break
+    ((key-history f 1)) d break
+    ((key-history e 1)) d break
+    ((key-history d 1)) . break
+    ((key-history c 1)) y break
+    ((key-history b 1)) u break
+    ((key-history a 1)) d break
+    () e break)
+
+  r (switch
+    ((key-history = 1)) w break
+    ((key-history - 1)) f break
+    ((key-history ] 1)) g break
+    ((key-history [ 1)) d break
+    ((key-history ; 1)) w break
+    ((key-history ' 1)) w break
+    ((key-history / 1)) d break
+    ((key-history . 1)) b break
+    ((key-history , 1)) l break
+    ((key-history z 1)) b break
+    ((key-history y 1)) m break
+    ((key-history x 1)) v break
+    ((key-history w 1)) w break
+    ((key-history v 1)) d break
+    ((key-history u 1)) . break
+    ((key-history t 1)) p break
+    ((key-history s 1)) v break
+    ((key-history r 1)) p break
+    ((key-history q 1)) r break
+    ((key-history p 1)) c break
+    ((key-history o 1)) k break
+    ((key-history n 1)) p break
+    ((key-history m 1)) u break
+    ((key-history l 1)) p break
+    ((key-history k 1)) r break
+    ((key-history j 1)) c break
+    ((key-history i 1)) m break
+    ((key-history h 1)) d break
+    ((key-history g 1)) c break
+    ((key-history f 1)) k break
+    ((key-history e 1)) v break
+    ((key-history d 1)) p break
+    ((key-history c 1)) p break
+    ((key-history b 1)) c break
+    ((key-history a 1)) f break
+    () r break)
+
+  t (switch
+    ((key-history = 1)) b break
+    ((key-history - 1)) b break
+    ((key-history ] 1)) v break
+    ((key-history [ 1)) p break
+    ((key-history ; 1)) b break
+    ((key-history ' 1)) f break
+    ((key-history / 1)) p break
+    ((key-history . 1)) . break
+    ((key-history , 1)) w break
+    ((key-history z 1)) z break
+    ((key-history y 1)) k break
+    ((key-history x 1)) b break
+    ((key-history w 1)) b break
+    ((key-history v 1)) k break
+    ((key-history u 1)) q break
+    ((key-history t 1)) f break
+    ((key-history s 1)) z break
+    ((key-history r 1)) v break
+    ((key-history q 1)) t break
+    ((key-history p 1)) j break
+    ((key-history o 1)) x break
+    ((key-history n 1)) v break
+    ((key-history m 1)) j break
+    ((key-history l 1)) g break
+    ((key-history k 1)) q break
+    ((key-history j 1)) p break
+    ((key-history i 1)) k break
+    ((key-history h 1)) m break
+    ((key-history g 1)) v break
+    ((key-history f 1)) v break
+    ((key-history e 1)) k break
+    ((key-history d 1)) y break
+    ((key-history c 1)) k break
+    ((key-history b 1)) v break
+    ((key-history a 1)) b break
+    () t break)
+
+  y (switch
+    ((key-history = 1)) x break
+    ((key-history - 1)) q break
+    ((key-history ] 1)) j break
+    ((key-history [ 1)) j break
+    ((key-history ; 1)) j break
+    ((key-history ' 1)) q break
+    ((key-history / 1)) k break
+    ((key-history . 1)) x break
+    ((key-history , 1)) y break
+    ((key-history z 1)) ; break
+    ((key-history y 1)) q break
+    ((key-history x 1)) q break
+    ((key-history w 1)) j break
+    ((key-history v 1)) j break
+    ((key-history u 1)) b break
+    ((key-history t 1)) q break
+    ((key-history s 1)) ' break
+    ((key-history r 1)) q break
+    ((key-history q 1)) y break
+    ((key-history p 1)) x break
+    ((key-history o 1)) g break
+    ((key-history n 1)) z break
+    ((key-history m 1)) k break
+    ((key-history l 1)) j break
+    ((key-history k 1)) v break
+    ((key-history j 1)) x break
+    ((key-history i 1)) z break
+    ((key-history h 1)) v break
+    ((key-history g 1)) j break
+    ((key-history f 1)) z break
+    ((key-history e 1)) j break
+    ((key-history d 1)) f break
+    ((key-history c 1)) z break
+    ((key-history b 1)) q break
+    ((key-history a 1)) q break
+    () y break)
+
+  u (switch
+    ((key-history = 1)) k break
+    ((key-history - 1)) l break
+    ((key-history ] 1)) f break
+    ((key-history [ 1)) f break
+    ((key-history ; 1)) m break
+    ((key-history ' 1)) k break
+    ((key-history / 1)) m break
+    ((key-history . 1)) k break
+    ((key-history , 1)) f break
+    ((key-history z 1)) q break
+    ((key-history y 1)) f break
+    ((key-history x 1)) g break
+    ((key-history w 1)) f break
+    ((key-history v 1)) w break
+    ((key-history u 1)) f break
+    ((key-history t 1)) v break
+    ((key-history s 1)) w break
+    ((key-history r 1)) j break
+    ((key-history q 1)) u break
+    ((key-history p 1)) f break
+    ((key-history o 1)) w break
+    ((key-history n 1)) k break
+    ((key-history m 1)) d break
+    ((key-history l 1)) l break
+    ((key-history k 1)) d break
+    ((key-history j 1)) f break
+    ((key-history i 1)) f break
+    ((key-history h 1)) w break
+    ((key-history g 1)) y break
+    ((key-history f 1)) w break
+    ((key-history e 1)) y break
+    ((key-history d 1)) g break
+    ((key-history c 1)) x break
+    ((key-history b 1)) f break
+    ((key-history a 1)) l break
+    () u break)
+
+  i (switch
+    ((key-history = 1)) c break
+    ((key-history - 1)) u break
+    ((key-history ] 1)) u break
+    ((key-history [ 1)) y break
+    ((key-history ; 1)) u break
+    ((key-history ' 1)) o break
+    ((key-history / 1)) u break
+    ((key-history . 1)) c break
+    ((key-history , 1)) u break
+    ((key-history z 1)) u break
+    ((key-history y 1)) o break
+    ((key-history x 1)) n break
+    ((key-history w 1)) u break
+    ((key-history v 1)) o break
+    ((key-history u 1)) o break
+    ((key-history t 1)) o break
+    ((key-history s 1)) u break
+    ((key-history r 1)) u break
+    ((key-history q 1)) i break
+    ((key-history p 1)) o break
+    ((key-history o 1)) d break
+    ((key-history n 1)) o break
+    ((key-history m 1)) l break
+    ((key-history l 1)) u break
+    ((key-history k 1)) l break
+    ((key-history j 1)) o break
+    ((key-history i 1)) u break
+    ((key-history h 1)) o break
+    ((key-history g 1)) o break
+    ((key-history f 1)) o break
+    ((key-history e 1)) o break
+    ((key-history d 1)) c break
+    ((key-history c 1)) o break
+    ((key-history b 1)) d break
+    ((key-history a 1)) u break
+    () i break)
+
+  o (switch
+    ((key-history = 1)) l break
+    ((key-history - 1)) o break
+    ((key-history ] 1)) y break
+    ((key-history [ 1)) l break
+    ((key-history ; 1)) y break
+    ((key-history ' 1)) u break
+    ((key-history / 1)) y break
+    ((key-history . 1)) l break
+    ((key-history , 1)) b break
+    ((key-history z 1)) d break
+    ((key-history y 1)) u break
+    ((key-history x 1)) o break
+    ((key-history w 1)) p break
+    ((key-history v 1)) u break
+    ((key-history u 1)) u break
+    ((key-history t 1)) u break
+    ((key-history s 1)) o break
+    ((key-history r 1)) o break
+    ((key-history q 1)) o break
+    ((key-history p 1)) u break
+    ((key-history o 1)) l break
+    ((key-history n 1)) u break
+    ((key-history m 1)) c break
+    ((key-history l 1)) y break
+    ((key-history k 1)) b break
+    ((key-history j 1)) u break
+    ((key-history i 1)) , break
+    ((key-history h 1)) u break
+    ((key-history g 1)) u break
+    ((key-history f 1)) u break
+    ((key-history e 1)) u break
+    ((key-history d 1)) r break
+    ((key-history c 1)) u break
+    ((key-history b 1)) l break
+    ((key-history a 1)) o break
+    () o break)
+
+  p (switch
+    ((key-history = 1)) v break
+    ((key-history - 1)) y break
+    ((key-history ] 1)) ' break
+    ((key-history [ 1)) ; break
+    ((key-history ; 1)) ; break
+    ((key-history ' 1)) x break
+    ((key-history / 1)) x break
+    ((key-history . 1)) v break
+    ((key-history , 1)) ; break
+    ((key-history z 1)) j break
+    ((key-history y 1)) , break
+    ((key-history x 1)) j break
+    ((key-history w 1)) ; break
+    ((key-history v 1)) , break
+    ((key-history u 1)) j break
+    ((key-history t 1)) ; break
+    ((key-history s 1)) y break
+    ((key-history r 1)) y break
+    ((key-history q 1)) p break
+    ((key-history p 1)) / break
+    ((key-history o 1)) , break
+    ((key-history n 1)) ; break
+    ((key-history m 1)) w break
+    ((key-history l 1)) ; break
+    ((key-history k 1)) g break
+    ((key-history j 1)) j break
+    ((key-history i 1)) ' break
+    ((key-history h 1)) , break
+    ((key-history g 1)) , break
+    ((key-history f 1)) ; break
+    ((key-history e 1)) ; break
+    ((key-history d 1)) l break
+    ((key-history c 1)) ; break
+    ((key-history b 1)) y break
+    ((key-history a 1)) y break
+    () p break)
+
+  a (switch
+    ((key-history = 1)) i break
+    ((key-history - 1)) n break
+    ((key-history ] 1)) a break
+    ((key-history [ 1)) a break
+    ((key-history ; 1)) a break
+    ((key-history ' 1)) s break
+    ((key-history / 1)) a break
+    ((key-history . 1)) i break
+    ((key-history , 1)) d break
+    ((key-history z 1)) s break
+    ((key-history y 1)) c break
+    ((key-history x 1)) s break
+    ((key-history w 1)) a break
+    ((key-history v 1)) t break
+    ((key-history u 1)) r break
+    ((key-history t 1)) r break
+    ((key-history s 1)) s break
+    ((key-history r 1)) s break
+    ((key-history q 1)) a break
+    ((key-history p 1)) r break
+    ((key-history o 1)) i break
+    ((key-history n 1)) n break
+    ((key-history m 1)) i break
+    ((key-history l 1)) a break
+    ((key-history k 1)) e break
+    ((key-history j 1)) s break
+    ((key-history i 1)) i break
+    ((key-history h 1)) s break
+    ((key-history g 1)) n break
+    ((key-history f 1)) s break
+    ((key-history e 1)) r break
+    ((key-history d 1)) a break
+    ((key-history c 1)) c break
+    ((key-history b 1)) a break
+    ((key-history a 1)) r break
+    () a break)
+  
+  s (switch
+    ((key-history = 1)) a break
+    ((key-history - 1)) s break
+    ((key-history ] 1)) r break
+    ((key-history [ 1)) s break
+    ((key-history ; 1)) n break
+    ((key-history ' 1)) i break
+    ((key-history / 1)) s break
+    ((key-history . 1)) a break
+    ((key-history , 1)) s break
+    ((key-history z 1)) h break
+    ((key-history y 1)) s break
+    ((key-history x 1)) e break
+    ((key-history w 1)) s break
+    ((key-history v 1)) s break
+    ((key-history u 1)) t break
+    ((key-history t 1)) s break
+    ((key-history s 1)) r break
+    ((key-history r 1)) n break
+    ((key-history q 1)) s break
+    ((key-history p 1)) n break
+    ((key-history o 1)) a break
+    ((key-history n 1)) r break
+    ((key-history m 1)) n break
+    ((key-history l 1)) r break
+    ((key-history k 1)) a break
+    ((key-history j 1)) t break
+    ((key-history i 1)) s break
+    ((key-history h 1)) r break
+    ((key-history g 1)) r break
+    ((key-history f 1)) r break
+    ((key-history e 1)) s break
+    ((key-history d 1)) o break
+    ((key-history c 1)) r break
+    ((key-history b 1)) o break
+    ((key-history a 1)) s break
+    () s break)
+  
+  d (switch
+    ((key-history = 1)) e break
+    ((key-history - 1)) t break
+    ((key-history ] 1)) t break
+    ((key-history [ 1)) e break
+    ((key-history ; 1)) h break
+    ((key-history ' 1)) n break
+    ((key-history / 1)) r break
+    ((key-history . 1)) e break
+    ((key-history , 1)) t break
+    ((key-history z 1)) n break
+    ((key-history y 1)) n break
+    ((key-history x 1)) h break
+    ((key-history w 1)) h break
+    ((key-history v 1)) r break
+    ((key-history u 1)) n break
+    ((key-history t 1)) n break
+    ((key-history s 1)) n break
+    ((key-history r 1)) t break
+    ((key-history q 1)) d break
+    ((key-history p 1)) t break
+    ((key-history o 1)) e break
+    ((key-history n 1)) t break
+    ((key-history m 1)) e break
+    ((key-history l 1)) s break
+    ((key-history k 1)) i break
+    ((key-history j 1)) r break
+    ((key-history i 1)) r break
+    ((key-history h 1)) n break
+    ((key-history g 1)) t break
+    ((key-history f 1)) t break
+    ((key-history e 1)) t break
+    ((key-history d 1)) e break
+    ((key-history c 1)) s break
+    ((key-history b 1)) e break
+    ((key-history a 1)) t break
+    () d break)
+  
+  f (switch
+    ((key-history = 1)) n break
+    ((key-history - 1)) h break
+    ((key-history ] 1)) s break
+    ((key-history [ 1)) t break
+    ((key-history ; 1)) s break
+    ((key-history ' 1)) d break
+    ((key-history / 1)) t break
+    ((key-history . 1)) n break
+    ((key-history , 1)) n break
+    ((key-history z 1)) t break
+    ((key-history y 1)) t break
+    ((key-history x 1)) t break
+    ((key-history w 1)) t break
+    ((key-history v 1)) h break
+    ((key-history u 1)) a break
+    ((key-history t 1)) t break
+    ((key-history s 1)) t break
+    ((key-history r 1)) c break
+    ((key-history q 1)) f break
+    ((key-history p 1)) s break
+    ((key-history o 1)) n break
+    ((key-history n 1)) s break
+    ((key-history m 1)) a break
+    ((key-history l 1)) t break
+    ((key-history k 1)) n break
+    ((key-history j 1)) d break
+    ((key-history i 1)) t break
+    ((key-history h 1)) t break
+    ((key-history g 1)) s break
+    ((key-history f 1)) n break
+    ((key-history e 1)) h break
+    ((key-history d 1)) u break
+    ((key-history c 1)) t break
+    ((key-history b 1)) s break
+    ((key-history a 1)) h break
+    () f break)
+  
+  g (switch
+    ((key-history = 1)) p break
+    ((key-history - 1)) k break
+    ((key-history ] 1)) w break
+    ((key-history [ 1)) g break
+    ((key-history ; 1)) f break
+    ((key-history ' 1)) c break
+    ((key-history / 1)) g break
+    ((key-history . 1)) , break
+    ((key-history , 1)) r break
+    ((key-history z 1)) , break
+    ((key-history y 1)) w break
+    ((key-history x 1)) k break
+    ((key-history w 1)) g break
+    ((key-history v 1)) f break
+    ((key-history u 1)) ; break
+    ((key-history t 1)) k break
+    ((key-history s 1)) k break
+    ((key-history r 1)) b break
+    ((key-history q 1)) g break
+    ((key-history p 1)) g break
+    ((key-history o 1)) f break
+    ((key-history n 1)) g break
+    ((key-history m 1)) , break
+    ((key-history l 1)) d break
+    ((key-history k 1)) x break
+    ((key-history j 1)) y break
+    ((key-history i 1)) g break
+    ((key-history h 1)) k break
+    ((key-history g 1)) g break
+    ((key-history f 1)) f break
+    ((key-history e 1)) l break
+    ((key-history d 1)) i break
+    ((key-history c 1)) b break
+    ((key-history b 1)) g break
+    ((key-history a 1)) k break
+    () g break)
+  
+  h (switch
+    ((key-history = 1)) d break
+    ((key-history - 1)) w break
+    ((key-history ] 1)) p break
+    ((key-history [ 1)) h break
+    ((key-history ; 1)) p break
+    ((key-history ' 1)) v break
+    ((key-history / 1)) f break
+    ((key-history . 1)) m break
+    ((key-history , 1)) i break
+    ((key-history z 1)) . break
+    ((key-history y 1)) p break
+    ((key-history x 1)) ' break
+    ((key-history w 1)) y break
+    ((key-history v 1)) g break
+    ((key-history u 1)) g break
+    ((key-history t 1)) y break
+    ((key-history s 1)) c break
+    ((key-history r 1)) . break
+    ((key-history q 1)) h break
+    ((key-history p 1)) y break
+    ((key-history o 1)) b break
+    ((key-history n 1)) y break
+    ((key-history m 1)) m break
+    ((key-history l 1)) h break
+    ((key-history k 1)) y break
+    ((key-history j 1)) . break
+    ((key-history i 1)) p break
+    ((key-history h 1)) g break
+    ((key-history g 1)) p break
+    ((key-history f 1)) g break
+    ((key-history e 1)) p break
+    ((key-history d 1)) d break
+    ((key-history c 1)) f break
+    ((key-history b 1)) b break
+    ((key-history a 1)) j break
+    () h break)
+  
+  j (switch
+    ((key-history = 1)) h break
+    ((key-history - 1)) r break
+    ((key-history ] 1)) n break
+    ((key-history [ 1)) n break
+    ((key-history ; 1)) t break
+    ((key-history ' 1)) t break
+    ((key-history / 1)) n break
+    ((key-history . 1)) h break
+    ((key-history , 1)) a break
+    ((key-history z 1)) a break
+    ((key-history y 1)) h break
+    ((key-history x 1)) d break
+    ((key-history w 1)) n break
+    ((key-history v 1)) c break
+    ((key-history u 1)) w break
+    ((key-history t 1)) i break
+    ((key-history s 1)) d break
+    ((key-history r 1)) h break
+    ((key-history q 1)) j break
+    ((key-history p 1)) h break
+    ((key-history o 1)) s break
+    ((key-history n 1)) h break
+    ((key-history m 1)) h break
+    ((key-history l 1)) n break
+    ((key-history k 1)) h break
+    ((key-history j 1)) n break
+    ((key-history i 1)) n break
+    ((key-history h 1)) y break
+    ((key-history g 1)) h break
+    ((key-history f 1)) y break
+    ((key-history e 1)) n break
+    ((key-history d 1)) h break
+    ((key-history c 1)) n break
+    ((key-history b 1)) n break
+    ((key-history a 1)) n break
+    () j break)
+  
+  k (switch
+    ((key-history = 1)) s break
+    ((key-history - 1)) e break
+    ((key-history ] 1)) e break
+    ((key-history [ 1)) i break
+    ((key-history ; 1)) e break
+    ((key-history ' 1)) a break
+    ((key-history / 1)) e break
+    ((key-history . 1)) s break
+    ((key-history , 1)) e break
+    ((key-history z 1)) e break
+    ((key-history y 1)) a break
+    ((key-history x 1)) r break
+    ((key-history w 1)) e break
+    ((key-history v 1)) a break
+    ((key-history u 1)) e break
+    ((key-history t 1)) a break
+    ((key-history s 1)) e break
+    ((key-history r 1)) e break
+    ((key-history q 1)) k break
+    ((key-history p 1)) e break
+    ((key-history o 1)) t break
+    ((key-history n 1)) e break
+    ((key-history m 1)) t break
+    ((key-history l 1)) e break
+    ((key-history k 1)) t break
+    ((key-history j 1)) a break
+    ((key-history i 1)) e break
+    ((key-history h 1)) a break
+    ((key-history g 1)) a break
+    ((key-history f 1)) e break
+    ((key-history e 1)) a break
+    ((key-history d 1)) t break
+    ((key-history c 1)) e break
+    ((key-history b 1)) t break
+    ((key-history a 1)) e break
+    () k break)
+  
+  l (switch
+    ((key-history = 1)) r break
+    ((key-history - 1)) a break
+    ((key-history ] 1)) i break
+    ((key-history [ 1)) r break
+    ((key-history ; 1)) i break
+    ((key-history ' 1)) e break
+    ((key-history / 1)) i break
+    ((key-history . 1)) r break
+    ((key-history , 1)) o break
+    ((key-history z 1)) o break
+    ((key-history y 1)) e break
+    ((key-history x 1)) a break
+    ((key-history w 1)) o break
+    ((key-history v 1)) e break
+    ((key-history u 1)) i break
+    ((key-history t 1)) e break
+    ((key-history s 1)) a break
+    ((key-history r 1)) a break
+    ((key-history q 1)) l break
+    ((key-history p 1)) i break
+    ((key-history o 1)) r break
+    ((key-history n 1)) i break
+    ((key-history m 1)) s break
+    ((key-history l 1)) i break
+    ((key-history k 1)) s break
+    ((key-history j 1)) e break
+    ((key-history i 1)) a break
+    ((key-history h 1)) e break
+    ((key-history g 1)) e break
+    ((key-history f 1)) i break
+    ((key-history e 1)) i break
+    ((key-history d 1)) n break
+    ((key-history c 1)) i break
+    ((key-history b 1)) r break
+    ((key-history a 1)) a break
+    () l break)
+  
+  ; (switch
+    ((key-history = 1)) t break
+    ((key-history - 1)) i break
+    ((key-history ] 1)) o break
+    ((key-history [ 1)) o break
+    ((key-history ; 1)) o break
+    ((key-history ' 1)) r break
+    ((key-history / 1)) o break
+    ((key-history . 1)) t break
+    ((key-history , 1)) h break
+    ((key-history z 1)) i break
+    ((key-history y 1)) i break
+    ((key-history x 1)) i break
+    ((key-history w 1)) i break
+    ((key-history v 1)) i break
+    ((key-history u 1)) s break
+    ((key-history t 1)) l break
+    ((key-history s 1)) i break
+    ((key-history r 1)) i break
+    ((key-history q 1)) ; break
+    ((key-history p 1)) a break
+    ((key-history o 1)) c break
+    ((key-history n 1)) a break
+    ((key-history m 1)) r break
+    ((key-history l 1)) o break
+    ((key-history k 1)) c break
+    ((key-history j 1)) i break
+    ((key-history i 1)) o break
+    ((key-history h 1)) i break
+    ((key-history g 1)) i break
+    ((key-history f 1)) a break
+    ((key-history e 1)) e break
+    ((key-history d 1)) s break
+    ((key-history c 1)) a break
+    ((key-history b 1)) i break
+    ((key-history a 1)) i break
+    () ; break)
+  
+  z (switch
+    ((key-history = 1)) j break
+    ((key-history - 1)) x break
+    ((key-history ] 1)) z break
+    ((key-history [ 1)) z break
+    ((key-history ; 1)) z break
+    ((key-history ' 1)) j break
+    ((key-history / 1)) z break
+    ((key-history . 1)) ' break
+    ((key-history , 1)) z break
+    ((key-history z 1)) f break
+    ((key-history y 1)) j break
+    ((key-history x 1)) ; break
+    ((key-history w 1)) z break
+    ((key-history v 1)) z break
+    ((key-history u 1)) l break
+    ((key-history t 1)) z break
+    ((key-history s 1)) x break
+    ((key-history r 1)) z break
+    ((key-history q 1)) z break
+    ((key-history p 1)) z break
+    ((key-history o 1)) q break
+    ((key-history n 1)) q break
+    ((key-history m 1)) q break
+    ((key-history l 1)) z break
+    ((key-history k 1)) / break
+    ((key-history j 1)) z break
+    ((key-history i 1)) q break
+    ((key-history h 1)) x break
+    ((key-history g 1)) x break
+    ((key-history f 1)) q break
+    ((key-history e 1)) w break
+    ((key-history d 1)) ; break
+    ((key-history c 1)) j break
+    ((key-history b 1)) ; break
+    ((key-history a 1)) x break
+    () z break)
+  
+  x (switch
+    ((key-history = 1)) / break
+    ((key-history - 1)) c break
+    ((key-history ] 1)) x break
+    ((key-history [ 1)) x break
+    ((key-history ; 1)) x break
+    ((key-history ' 1)) . break
+    ((key-history / 1)) x break
+    ((key-history . 1)) / break
+    ((key-history , 1)) x break
+    ((key-history z 1)) m break
+    ((key-history y 1)) x break
+    ((key-history x 1)) m break
+    ((key-history w 1)) x break
+    ((key-history v 1)) x break
+    ((key-history u 1)) k break
+    ((key-history t 1)) w break
+    ((key-history s 1)) j break
+    ((key-history r 1)) x break
+    ((key-history q 1)) x break
+    ((key-history p 1)) b break
+    ((key-history o 1)) / break
+    ((key-history n 1)) j break
+    ((key-history m 1)) z break
+    ((key-history l 1)) x break
+    ((key-history k 1)) . break
+    ((key-history j 1)) k break
+    ((key-history i 1)) v break
+    ((key-history h 1)) j break
+    ((key-history g 1)) q break
+    ((key-history f 1)) j break
+    ((key-history e 1)) g break
+    ((key-history d 1)) q break
+    ((key-history c 1)) v break
+    ((key-history b 1)) x break
+    ((key-history a 1)) c break
+    () x break)
+  
+  c (switch
+    ((key-history = 1)) , break
+    ((key-history - 1)) m break
+    ((key-history ] 1)) m break
+    ((key-history [ 1)) c break
+    ((key-history ; 1)) v break
+    ((key-history ' 1)) l break
+    ((key-history / 1)) c break
+    ((key-history . 1)) p break
+    ((key-history , 1)) c break
+    ((key-history z 1)) v break
+    ((key-history y 1)) z break
+    ((key-history x 1)) p break
+    ((key-history w 1)) m break
+    ((key-history v 1)) p break
+    ((key-history u 1)) m break
+    ((key-history t 1)) m break
+    ((key-history s 1)) b break
+    ((key-history r 1)) k break
+    ((key-history q 1)) c break
+    ((key-history p 1)) m break
+    ((key-history o 1)) z break
+    ((key-history n 1)) m break
+    ((key-history m 1)) ' break
+    ((key-history l 1)) c break
+    ((key-history k 1)) , break
+    ((key-history j 1)) q break
+    ((key-history i 1)) w break
+    ((key-history h 1)) b break
+    ((key-history g 1)) m break
+    ((key-history f 1)) m break
+    ((key-history e 1)) b break
+    ((key-history d 1)) j break
+    ((key-history c 1)) d break
+    ((key-history b 1)) ' break
+    ((key-history a 1)) m break
+    () c break)
+  
+  v (switch
+    ((key-history = 1)) . break
+    ((key-history - 1)) p break
+    ((key-history ] 1)) c break
+    ((key-history [ 1)) v break
+    ((key-history ; 1)) c break
+    ((key-history ' 1)) p break
+    ((key-history / 1)) v break
+    ((key-history . 1)) w break
+    ((key-history , 1)) v break
+    ((key-history z 1)) c break
+    ((key-history y 1)) g break
+    ((key-history x 1)) w break
+    ((key-history w 1)) c break
+    ((key-history v 1)) b break
+    ((key-history u 1)) , break
+    ((key-history t 1)) d break
+    ((key-history s 1)) m break
+    ((key-history r 1)) g break
+    ((key-history q 1)) v break
+    ((key-history p 1)) w break
+    ((key-history o 1)) h break
+    ((key-history n 1)) c break
+    ((key-history m 1)) . break
+    ((key-history l 1)) v break
+    ((key-history k 1)) ; break
+    ((key-history j 1)) g break
+    ((key-history i 1)) d break
+    ((key-history h 1)) z break
+    ((key-history g 1)) w break
+    ((key-history f 1)) h break
+    ((key-history e 1)) m break
+    ((key-history d 1)) k break
+    ((key-history c 1)) g break
+    ((key-history b 1)) w break
+    ((key-history a 1)) p break
+    () v break)
+  
+  b (switch
+    ((key-history = 1)) q break
+    ((key-history - 1)) v break
+    ((key-history ] 1)) b break
+    ((key-history [ 1)) b break
+    ((key-history ; 1)) k break
+    ((key-history ' 1)) b break
+    ((key-history / 1)) j break
+    ((key-history . 1)) z break
+    ((key-history , 1)) j break
+    ((key-history z 1)) / break
+    ((key-history y 1)) v break
+    ((key-history x 1)) z break
+    ((key-history w 1)) v break
+    ((key-history v 1)) ' break
+    ((key-history u 1)) ' break
+    ((key-history t 1)) b break
+    ((key-history s 1)) q break
+    ((key-history r 1)) w break
+    ((key-history q 1)) b break
+    ((key-history p 1)) v break
+    ((key-history o 1)) ' break
+    ((key-history n 1)) w break
+    ((key-history m 1)) ; break
+    ((key-history l 1)) b break
+    ((key-history k 1)) z break
+    ((key-history j 1)) w break
+    ((key-history i 1)) j break
+    ((key-history h 1)) q break
+    ((key-history g 1)) z break
+    ((key-history f 1)) b break
+    ((key-history e 1)) x break
+    ((key-history d 1)) x break
+    ((key-history c 1)) q break
+    ((key-history b 1)) z break
+    ((key-history a 1)) v break
+    () b break)
+  
+  n (switch
+    ((key-history = 1)) f break
+    ((key-history - 1)) z break
+    ((key-history ] 1)) k break
+    ((key-history [ 1)) k break
+    ((key-history ; 1)) g break
+    ((key-history ' 1)) g break
+    ((key-history / 1)) b break
+    ((key-history . 1)) f break
+    ((key-history , 1)) k break
+    ((key-history z 1)) g break
+    ((key-history y 1)) b break
+    ((key-history x 1)) y break
+    ((key-history w 1)) k break
+    ((key-history v 1)) m break
+    ((key-history u 1)) p break
+    ((key-history t 1)) c break
+    ((key-history s 1)) p break
+    ((key-history r 1)) m break
+    ((key-history q 1)) n break
+    ((key-history p 1)) k break
+    ((key-history o 1)) v break
+    ((key-history n 1)) b break
+    ((key-history m 1)) b break
+    ((key-history l 1)) k break
+    ((key-history k 1)) k break
+    ((key-history j 1)) b break
+    ((key-history i 1)) b break
+    ((key-history h 1)) p break
+    ((key-history g 1)) k break
+    ((key-history f 1)) p break
+    ((key-history e 1)) z break
+    ((key-history d 1)) b break
+    ((key-history c 1)) m break
+    ((key-history b 1)) p break
+    ((key-history a 1)) z break
+    () n break)
+  
+  m (switch
+    ((key-history = 1)) m break
+    ((key-history - 1)) , break
+    ((key-history ] 1)) h break
+    ((key-history [ 1)) m break
+    ((key-history ; 1)) d break
+    ((key-history ' 1)) m break
+    ((key-history / 1)) h break
+    ((key-history . 1)) d break
+    ((key-history , 1)) p break
+    ((key-history z 1)) p break
+    ((key-history y 1)) d break
+    ((key-history x 1)) c break
+    ((key-history w 1)) l break
+    ((key-history v 1)) y break
+    ((key-history u 1)) c break
+    ((key-history t 1)) , break
+    ((key-history s 1)) g break
+    ((key-history r 1)) l break
+    ((key-history q 1)) m break
+    ((key-history p 1)) d break
+    ((key-history o 1)) p break
+    ((key-history n 1)) f break
+    ((key-history m 1)) f break
+    ((key-history l 1)) m break
+    ((key-history k 1)) p break
+    ((key-history j 1)) h break
+    ((key-history i 1)) h break
+    ((key-history h 1)) c break
+    ((key-history g 1)) f break
+    ((key-history f 1)) c break
+    ((key-history e 1)) f break
+    ((key-history d 1)) m break
+    ((key-history c 1)) h break
+    ((key-history b 1)) h break
+    ((key-history a 1)) , break
+    () m break)
+  
+  , (switch
+    ((key-history = 1)) g break
+    ((key-history - 1)) . break
+    ((key-history ] 1)) ; break
+    ((key-history [ 1)) , break
+    ((key-history ; 1)) , break
+    ((key-history ' 1)) ' break
+    ((key-history / 1)) , break
+    ((key-history . 1)) g break
+    ((key-history , 1)) , break
+    ((key-history z 1)) x break
+    ((key-history y 1)) ' break
+    ((key-history x 1)) x break
+    ((key-history w 1)) , break
+    ((key-history v 1)) q break
+    ((key-history u 1)) z break
+    ((key-history t 1)) ' break
+    ((key-history s 1)) , break
+    ((key-history r 1)) ; break
+    ((key-history q 1)) , break
+    ((key-history p 1)) ' break
+    ((key-history o 1)) m break
+    ((key-history n 1)) ' break
+    ((key-history m 1)) g break
+    ((key-history l 1)) , break
+    ((key-history k 1)) m break
+    ((key-history j 1)) ' break
+    ((key-history i 1)) / break
+    ((key-history h 1)) ' break
+    ((key-history g 1)) ' break
+    ((key-history f 1)) ' break
+    ((key-history e 1)) , break
+    ((key-history d 1)) w break
+    ((key-history c 1)) / break
+    ((key-history b 1)) m break
+    ((key-history a 1)) . break
+    () , break)
+  
+  . (switch
+    ((key-history = 1)) z break
+    ((key-history - 1)) ' break
+    ((key-history ] 1)) , break
+    ((key-history [ 1)) . break
+    ((key-history ; 1)) . break
+    ((key-history ' 1)) / break
+    ((key-history / 1)) . break
+    ((key-history . 1)) j break
+    ((key-history , 1)) . break
+    ((key-history z 1)) k break
+    ((key-history y 1)) / break
+    ((key-history x 1)) / break
+    ((key-history w 1)) . break
+    ((key-history v 1)) / break
+    ((key-history u 1)) y break
+    ((key-history t 1)) . break
+    ((key-history s 1)) . break
+    ((key-history r 1)) ' break
+    ((key-history q 1)) . break
+    ((key-history p 1)) , break
+    ((key-history o 1)) j break
+    ((key-history n 1)) , break
+    ((key-history m 1)) v break
+    ((key-history l 1)) . break
+    ((key-history k 1)) f break
+    ((key-history j 1)) ; break
+    ((key-history i 1)) . break
+    ((key-history h 1)) ; break
+    ((key-history g 1)) ; break
+    ((key-history f 1)) , break
+    ((key-history e 1)) . break
+    ((key-history d 1)) v break
+    ((key-history c 1)) , break
+    ((key-history b 1)) k break
+    ((key-history a 1)) ' break
+    () . break)
+  
+  / (switch
+    ((key-history = 1)) z break
+    ((key-history - 1)) / break
+    ((key-history ] 1)) . break
+    ((key-history [ 1)) / break
+    ((key-history ; 1)) / break
+    ((key-history ' 1)) z break
+    ((key-history / 1)) / break
+    ((key-history . 1)) q break
+    ((key-history , 1)) / break
+    ((key-history z 1)) y break
+    ((key-history y 1)) . break
+    ((key-history x 1)) , break
+    ((key-history w 1)) / break
+    ((key-history v 1)) . break
+    ((key-history u 1)) v break
+    ((key-history t 1)) x break
+    ((key-history s 1)) / break
+    ((key-history r 1)) , break
+    ((key-history q 1)) / break
+    ((key-history p 1)) . break
+    ((key-history o 1)) . break
+    ((key-history n 1)) . break
+    ((key-history m 1)) x break
+    ((key-history l 1)) / break
+    ((key-history k 1)) w break
+    ((key-history j 1)) , break
+    ((key-history i 1)) x break
+    ((key-history h 1)) . break
+    ((key-history g 1)) . break
+    ((key-history f 1)) . break
+    ((key-history e 1)) / break
+    ((key-history d 1)) z break
+    ((key-history c 1)) . break
+    ((key-history b 1)) j break
+    ((key-history a 1)) / break
+    () / break)
+  
+  ' (switch
+    ((key-history = 1)) ; break
+    ((key-history - 1)) ' break
+    ((key-history ] 1)) / break
+    ((key-history [ 1)) ' break
+    ((key-history ; 1)) ' break
+    ((key-history ' 1)) ' break
+    ((key-history / 1)) ; break
+    ((key-history . 1)) ; break
+    ((key-history , 1)) ' break
+    ((key-history z 1)) y break 
+    ((key-history y 1)) . break
+    ((key-history x 1)) , break
+    ((key-history w 1)) ' break
+    ((key-history v 1)) ; break
+    ((key-history u 1)) / break
+    ((key-history t 1)) / break
+    ((key-history s 1)) ; break
+    ((key-history r 1)) / break
+    ((key-history q 1)) ' break
+    ((key-history p 1)) ; break
+    ((key-history o 1)) ; break
+    ((key-history n 1)) / break
+    ((key-history m 1)) / break
+    ((key-history l 1)) ' break
+    ((key-history k 1)) ' break
+    ((key-history j 1)) / break
+    ((key-history i 1)) ; break
+    ((key-history h 1)) / break
+    ((key-history g 1)) / break
+    ((key-history f 1)) / break
+    ((key-history e 1)) ' break
+    ((key-history d 1)) - break
+    ((key-history c 1)) ' break
+    ((key-history b 1)) / break
+    ((key-history a 1)) ; break
+    () ' break)
+  
+  [ (switch
+    ((key-history d 1)) / break
+    () [ break)
+  
+  ] (switch
+    ((key-history d 1)) = break
+    () ] break)
+  
+  - (switch
+    ((key-history d 1)) [ break
+    () - break)
+  
+  = (switch
+    ((key-history d 1)) ] break
+    () = break)
+)
+(deflayer layouts
+  lrld  @qwr @bse lrld lrld lrld lrld lrld lrld lrld lrld lrld lrld lrld
+  lrld  _    _    _    _    _    _    _    _    _    _    _    _    _
+  lrld  _    _    _    _    _    _    _    _    _    _    _    _
+  lrld  _    _    _    _    _    _    _    _    _    _    _ 
+  lrld  lrld lrld           lrld           lrld lrld lrld
+)
